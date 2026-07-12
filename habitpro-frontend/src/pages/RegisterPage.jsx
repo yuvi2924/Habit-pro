@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import axios from 'axios'
+import api from '../api/axiosInstance'
 import { useAuthStore } from '../store/authStore'
 
 export default function RegisterPage() {
@@ -15,7 +15,7 @@ export default function RegisterPage() {
     setLoading(true)
     setError('')
     try {
-      const res = await axios.post('/api/auth/register', form)
+      const res = await api.post('/auth/register', form)
       login(res.data, res.data.token)
       navigate('/dashboard')
     } catch (err) {
