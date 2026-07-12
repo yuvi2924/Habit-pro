@@ -1,0 +1,19 @@
+CREATE TABLE chat_messages (
+    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    sender_id   BIGINT NOT NULL,
+    receiver_id BIGINT NOT NULL,
+    message     VARCHAR(1000) NOT NULL,
+    is_read     BOOLEAN NOT NULL DEFAULT FALSE,
+    sent_at     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id)   REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE feedbacks (
+    id         BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name       VARCHAR(100) NOT NULL,
+    email      VARCHAR(100) NOT NULL,
+    phone      VARCHAR(20)  NOT NULL,
+    message    VARCHAR(1000) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
